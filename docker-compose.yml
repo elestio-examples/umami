@@ -5,7 +5,7 @@ services:
     ports:
       - "172.17.0.1:3956:3000"
     environment:
-      DATABASE_URL: postgresql://umami:umami@db:5432/umami
+      DATABASE_URL: postgresql://umami:${ADMIN_PASSWORD}@db:5432/umami
       DATABASE_TYPE: postgresql
       APP_SECRET: ${SECRET_KEY_BASE}
     depends_on:
@@ -16,8 +16,7 @@ services:
     environment:
       POSTGRES_DB: umami
       POSTGRES_USER: umami
-      POSTGRES_PASSWORD: umami
+      POSTGRES_PASSWORD: ${ADMIN_PASSWORD}
     volumes:
-      - ./sql/schema.postgresql.sql:/docker-entrypoint-initdb.d/schema.postgresql.sql:ro
       - ./umami-db-data:/var/lib/postgresql/data
     restart: always
