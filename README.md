@@ -13,5 +13,5 @@ Deploy Umami server with CI/CD on Elestio
 You can open Umami UI here:
 
     URL: https://[CI_CD_DOMAIN]
-    Login: [ADMIN_EMAIL]
+    Login: admin
     password: [ADMIN_PASSWORD]
