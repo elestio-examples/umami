@@ -1,0 +1,1 @@
+docker buildx build . --output type=docker,name=elestio4test/umami:latest | docker load

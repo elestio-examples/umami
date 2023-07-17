@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  umami:
+    image: elestio4test/umami:latest
+    ports:
+      - "172.17.0.1:3956:3000"
+    environment:
+      DATABASE_URL: postgresql://umami:${ADMIN_PASSWORD}@db:5432/umami
+      DATABASE_TYPE: postgresql
+      APP_SECRET: ${SECRET_KEY_BASE}
+    depends_on:
+      - db
+    restart: always
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: ${ADMIN_PASSWORD}
+    volumes:
+      - ./umami-db-data:/var/lib/postgresql/data
+    restart: always
